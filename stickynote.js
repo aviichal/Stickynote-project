@@ -50,10 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.addEventListener("mousemove", onMouseMove);
 
-        note.onmouseup = () => {
+        function onMouseUp() {
             document.removeEventListener("mousemove", onMouseMove);
-            note.onmouseup = null;
-        };
+            document.removeEventListener("mouseup", onMouseUp);
+        }
+
+        document.addEventListener("mouseup", onMouseUp);
 
         note.ondragstart = () => false;
     }
